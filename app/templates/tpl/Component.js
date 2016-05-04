@@ -1,3 +1,6 @@
+/**
+ * created by chanapp-cli
+ */
 import React, {Component}  from 'react';
 import ReactDOM from 'react-dom';
 
@@ -46,7 +49,9 @@ class <%= className %> extends Component {
         const styles = getStyle(this.props, this.context, this.state);
 
         return (
-            <div></div>
+            <div style={prepareStyles(Object.assign(styles.root, style))}>
+
+            </div>
         );
     }
 

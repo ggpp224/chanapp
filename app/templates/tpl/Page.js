@@ -1,8 +1,11 @@
+/**
+ * created by chanapp-cli
+ */
 import React  from 'react';
-import {observable} from 'mobx';
+import mobx, {observable} from 'mobx';
 import {observer} from 'mobx-react';
 import {connect} from 'mobx-reactor';
-import Page from 'chanjet-ui/lib/Page';
+import Page from 'app/modules/common/containers/BasePage';
 
 @observer
 class <%= className %> extends Page {
@@ -50,5 +53,5 @@ class <%= className %> extends Page {
 }
 
 export default connect({
-
+        //saveRecord: store => store.state.workRecordStore.saveRecord
 })(<%= className %>);
