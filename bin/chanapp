@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var App = require('../app/index');
+var doctor = require('chanapp-doctor');
+
+doctor(function () {
+    new App();
+},true);
+
+
+
+

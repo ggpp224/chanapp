@@ -1,0 +1,13 @@
+{
+  "name": "chanapp",
+  "version": "0.0.4",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "yao-cli": "",
+    "chanapp-doctor": "",
+    "meow": "^3.7.0"
+  },
+  "keywords": [
+    "chanapp cli"
+  ]
+}
