@@ -48,7 +48,8 @@ class App extends Yao{
                 default: false,
                 choices: [
                     {name: 'npm, 从npm官方安装', value: 'npm', short: '从npm.org安装'},
-                    {name: 'cnpm, 从chanjet镜象安装', value: 'cnpm', short: '从chanjet镜象安装'}
+                    {name: 'cnpm, 从chanjet镜象安装', value: 'cnpm', short: '从chanjet镜象安装'},
+                    {name: '不安装', value: 'none', short: '不安装'}
                 ]
             }
         ];
@@ -67,9 +68,13 @@ class App extends Yao{
     writing(){
         if(this.create){
             this.createTplFile(this.fileName,this.cli.flags);
-        }else if(this.dirname){
+        }else{
+            if(!this.dirname){
+                this.dirname = this.answers.dirname;
+            }
             this.buildEnv();
             this.assetsDirs();
+
         }
 
 
@@ -107,7 +112,7 @@ class App extends Yao{
 
     install(){
         var answers = this.answers;
-        if(answers.cnpm){
+        if(answers.cnpm !== 'none'){
             this.spawnCommand(answers.cnpm,['install']);
         }
 
