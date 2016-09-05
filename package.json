@@ -1,9 +1,12 @@
 {
   "name": "chanapp",
-  "version": "0.0.7",
+  "version": "0.1.1",
+  "bin": {
+    "chanapp": "./bin/chanapp"
+  },
   "dependencies": {
     "chalk": "^1.1.3",
-    "yao-cli": "",
+    "yao-cli": "^0.0.5",
     "chanapp-doctor": "",
     "meow": "^3.7.0"
   },

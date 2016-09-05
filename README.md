@@ -13,6 +13,19 @@
     $ chanapp myApp
 ```
 
+运行
+```
+    $ cd myApp
+    
+    $ npm install
+    
+    $ npm start
+```
+
+访问浏览器: ` http://localhost:8080/ `
+
+
+
 tools:
 
 生成React Component 模板文件

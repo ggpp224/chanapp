@@ -5,12 +5,14 @@
 var chalk = require('chalk');
 var meow = require('meow');
 var path = require('path');
-var Yao = require('yao-cli')
+var Yao = require('yao-cli');
+
+var baseRoot = path.join(__dirname,'../');
 
 class App extends Yao{
 
     constructor(){
-        super();
+        super(baseRoot);
     }
 
     prompting() {
@@ -47,9 +49,9 @@ class App extends Yao{
                 message: '选取自动安装项目依赖?',
                 default: false,
                 choices: [
+                    {name: '不安装', value: 'none', short: '不安装'},
                     {name: 'npm, 从npm官方安装', value: 'npm', short: '从npm.org安装'},
-                    {name: 'cnpm, 从chanjet镜象安装', value: 'cnpm', short: '从chanjet镜象安装'},
-                    {name: '不安装', value: 'none', short: '不安装'}
+                    {name: 'cnpm, 从chanjet镜象安装', value: 'cnpm', short: '从chanjet镜象安装'}
                 ]
             }
         ];
