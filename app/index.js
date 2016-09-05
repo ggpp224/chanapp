@@ -19,10 +19,10 @@ class App extends Yao{
        var cli = this.cli = meow(`
             ${chalk.yellow.bold('help:')}
             ${chalk.dim('-------------------------------------------------------------')}
-            ${chalk.dim('|')}    ${chalk.green('chanapp')}  ${chalk.dim('生成项目')}                                      ${chalk.dim('|')}
-            ${chalk.dim('|')}    ${chalk.green('chanapp create xx -c')}  ${chalk.dim('生成一个React Component')}          ${chalk.dim('|')} 
-            ${chalk.dim('|')}    ${chalk.green('chanapp create xx -p')}  ${chalk.dim('生成一个Page页面')}                 ${chalk.dim('|')}
-            ${chalk.dim('|')}    ${chalk.green('chanapp -h')}  ${chalk.dim('查看帮助说明')}                               ${chalk.dim('|')}
+            ${chalk.dim('|')}    ${chalk.green('chanjet-gzq-h5')}  ${chalk.dim('生成项目')}                                      ${chalk.dim('|')}
+            ${chalk.dim('|')}    ${chalk.green('chanjet-gzq-h5 create xx -c')}  ${chalk.dim('生成一个React Component')}          ${chalk.dim('|')} 
+            ${chalk.dim('|')}    ${chalk.green('chanjet-gzq-h5 create xx -p')}  ${chalk.dim('生成一个Page页面')}                 ${chalk.dim('|')}
+            ${chalk.dim('|')}    ${chalk.green('chanjet-gzq-h5 -h')}  ${chalk.dim('查看帮助说明')}                               ${chalk.dim('|')}
             ${chalk.dim('-------------------------------------------------------------')}
         `);
        this.dirname = '';

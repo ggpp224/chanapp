@@ -1,16 +1,16 @@
-# chanapp
+# chanjet-gzq-h5
 > app 工程生成器及工具
 
 ## 安装
 ```
-    $ npm install chanapp -g
+    $ npm install chanjet-gzq-h5 -g
 ```
 
 ## 使用
 
 构建项目
 ```
-    $ chanapp myApp
+    $ chanjet-gzq-h5 myApp
 ```
 
 运行
@@ -30,13 +30,13 @@ tools:
 
 生成React Component 模板文件
 ```
-  $ chanapp create xx -c
+  $ chanjet-gzq-h5 create xx -c
 ```
 
 
 生成 Page 模板文件
 ```
-   $ chanapp create xx -p
+   $ chanjet-gzq-h5 create xx -p
 ```
 
-`chanapp -h` 查看帮助
+`chanjet-gzq-h5 -h` 查看帮助
