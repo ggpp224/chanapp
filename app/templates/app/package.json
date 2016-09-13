@@ -7,8 +7,8 @@
     "core-decorators": "^0.12.0",
     "react-tap-event-plugin": "^1.0.0",
     "babel-es6-polyfill": "^1.0.1",
-    "chanjet-mutants": "^0.0.28",
-    "chanjet-ui": "^0.15.3-8"
+    "chanjet-mutants": "^1.0.0",
+    "chanjet-ui": "^1.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.6.5",
