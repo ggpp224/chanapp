@@ -28,6 +28,11 @@ class App extends Yao{
        this.dirname = '';
        var inputs = cli.input;
        var flags = cli.flags;
+       var option = null;
+        for(var key in flags){
+            option = key;
+            break;
+        }
 
        var arg1 = inputs[0];
 
@@ -37,12 +42,46 @@ class App extends Yao{
             return [];
         }else if(flags.h){
             cli.showHelp();
-            return [];
+        }else if(flags.v){
+            console.log(chalk.green('v'+cli.pkg.version));
+            process.exit(0);
+        }else if(inputs.length===0  && option){
+            console.log(chalk.red(cli.pkg.name+': 不支持参数：-'+option));
+            process.exit(0);
         }else{
             this.dirname = inputs[0]
         }
         
         var prompts = [
+         /*   {
+                type: 'checkbox',
+                name: 'suportMoudle',
+                message: '选择需要支持的模块',
+                choices: [
+                    {name: `${chalk.green('chanjet-mutants')}   ${chalk.dim('提供native插件支持和环境检测')}`, value:'chanjet-mutants', checked: true, short: 'chanjet-mutants'},
+                    {name: `${chalk.green('chanet-navigator')}  ${chalk.dim('提供页面路由管理')}`, checked: true, short: 'chanet-navigator' },
+                    {name: `${chalk.green('chanjet-ui')}        ${chalk.dim('提供常用UI组件支持')}`, checked: true, short: 'chanjet-ui'}
+                ],
+                validate: function (answer) {
+                    var answerStr = answer.join('');
+                    var hasChecked = function(name){
+                        return answerStr.indexOf(name) !== -1;
+                    }
+                    if(hasChecked('chanjet-ui')){
+                        if(!hasChecked('chanet-navigator') && !hasChecked('chanjet-mutants')){
+                            return chalk.yellow('chanjet-ui依赖于chanjet-mutants和chanjet-navigator, 请勾选两者');
+                        }else if(!hasChecked('chanet-navigator')){
+                            return 'chanjet-ui依赖于chanjet-navigator，请勾选';
+                        }else if(!hasChecked('chanjet-mutants')){
+                            return 'chanjet-ui依赖于chanjet-mutants， 请勾选';
+                        }
+                    }else if(hasChecked('chanet-navigator') && !hasChecked('chanet-mutants')){
+                        return 'chanjet-navigator依赖于chanjet-mutants， 请勾选';
+                    }
+
+                    return true;
+                }
+            },*/
             {
                 type: 'list',
                 name: 'cnpm',
@@ -115,6 +154,7 @@ class App extends Yao{
     install(){
         var answers = this.answers;
         if(answers.cnpm !== 'none'){
+            console.log('install ...');
             this.spawnCommand(answers.cnpm,['install']);
         }
 

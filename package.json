@@ -1,6 +1,6 @@
 {
   "name": "chanjet-gzq-h5",
-  "version": "0.2.0",
+  "version": "0.3.2",
   "bin": {
     "chanjet-gzq-h5": "./bin/chanjet-gzq-h5"
   },
