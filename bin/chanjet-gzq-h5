@@ -3,11 +3,9 @@
 'use strict';
 
 var App = require('../app/index');
-var doctor = require('chanapp-doctor');
+new App();
 
-doctor(function () {
-    new App();
-},true);
+
 
 
 

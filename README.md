@@ -40,3 +40,5 @@ tools:
 ```
 
 `chanjet-gzq-h5 -h` 查看帮助
+`chanjet-gzq-h5 -v` 查看版本
+`chanjet-gzq-h5 --doctor` 检查依赖环境
