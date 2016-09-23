@@ -6,8 +6,15 @@ var chalk = require('chalk');
 var meow = require('meow');
 var path = require('path');
 var Yao = require('yao-cli');
+var child_process = require('child_process');
 
 var baseRoot = path.join(__dirname,'../');
+function sudo(cmd) {
+    if(process.platform !== 'win32'){
+        return 'sudo '+cmd;
+    }
+    return cmd;
+}
 
 class App extends Yao{
 
@@ -18,12 +25,13 @@ class App extends Yao{
     prompting() {
        var cli = this.cli = meow(`
             ${chalk.yellow.bold('help:')}
-            ${chalk.dim('-------------------------------------------------------------')}
+            ${chalk.dim('  ---------------------------------------------------------------')}
             ${chalk.dim('|')}    ${chalk.green('chanjet-gzq-h5')}  ${chalk.dim('生成项目')}                                      ${chalk.dim('|')}
             ${chalk.dim('|')}    ${chalk.green('chanjet-gzq-h5 create xx -c')}  ${chalk.dim('生成一个React Component')}          ${chalk.dim('|')} 
             ${chalk.dim('|')}    ${chalk.green('chanjet-gzq-h5 create xx -p')}  ${chalk.dim('生成一个Page页面')}                 ${chalk.dim('|')}
             ${chalk.dim('|')}    ${chalk.green('chanjet-gzq-h5 -h')}  ${chalk.dim('查看帮助说明')}                               ${chalk.dim('|')}
-            ${chalk.dim('-------------------------------------------------------------')}
+            ${chalk.dim('|')}    ${chalk.green('chanjet-gzq-h5 -v')}  ${chalk.dim('查看版本')}                                   ${chalk.dim('|')}
+            ${chalk.dim('  ---------------------------------------------------------------')}
         `);
        this.dirname = '';
        var inputs = cli.input;
@@ -35,7 +43,6 @@ class App extends Yao{
         }
 
        var arg1 = inputs[0];
-
         if(arg1 === 'create' && inputs[1]){
             this.create = true;
             this.fileName = inputs[1];
@@ -45,6 +52,8 @@ class App extends Yao{
         }else if(flags.v){
             console.log(chalk.green('v'+cli.pkg.version));
             process.exit(0);
+        }else if(flags.doctor){
+            require('../bin/doctor');
         }else if(inputs.length===0  && option){
             console.log(chalk.red(cli.pkg.name+': 不支持参数：-'+option));
             process.exit(0);
@@ -86,11 +95,11 @@ class App extends Yao{
                 type: 'list',
                 name: 'cnpm',
                 message: '选取自动安装项目依赖?',
-                default: false,
+                default: 'npm',
                 choices: [
-                    {name: '不安装', value: 'none', short: '不安装'},
                     {name: 'npm, 从npm官方安装', value: 'npm', short: '从npm.org安装'},
-                    {name: 'cnpm, 从chanjet镜象安装', value: 'cnpm', short: '从chanjet镜象安装'}
+                    {name: 'cnpm, 从chanjet镜象安装', value: 'cnpm', short: '从chanjet镜象安装'},
+                    {name: '不安装', value: 'none', short: '不安装'}
                 ]
             }
         ];
@@ -155,7 +164,13 @@ class App extends Yao{
         var answers = this.answers;
         if(answers.cnpm !== 'none'){
             console.log('install ...');
-            this.spawnCommand(answers.cnpm,['install']);
+            // this.spawnCommand(answers.cnpm,['install']);
+            if(answers.cnpm === 'npm'){
+                this.spawnCommand(answers.cnpm,['install']);
+            }else{
+                process.chdir(this._destinationRoot);
+                child_process.execSync(sudo(answers.cnpm + ' install'), {stdio: 'inherit'});
+            }
         }
 
     }

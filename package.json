@@ -1,6 +1,6 @@
 {
   "name": "chanjet-gzq-h5",
-  "version": "0.3.4-7",
+  "version": "0.3.10",
   "bin": {
     "chanjet-gzq-h5": "./bin/chanjet-gzq-h5"
   },
@@ -10,7 +10,7 @@
   "dependencies": {
     "chalk": "^1.1.3",
     "yao-cli": "^0.0.5",
-    "chanapp-doctor": "^0.0.6",
+    "chanapp-doctor": "^0.0.12",
     "meow": "^3.7.0"
   },
   "bugs": {
