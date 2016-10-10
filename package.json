@@ -5,8 +5,7 @@
     "chanjet-gzq-h5": "./bin/chanjet-gzq-h5"
   },
   "scripts": {
-    "postinstall": "./node_modules/chanapp-doctor/bin/chanapp-doctor",
-    "pull-tpl": "node ./scripts/pull-template.js"
+    "postinstall": "./node_modules/chanapp-doctor/bin/chanapp-doctor"
   },
   "dependencies": {
     "chalk": "^1.1.3",
