@@ -1,6 +1,8 @@
 # chanjet-gzq-h5
 > app 工程生成器及工具
 
+[![npm Package](https://img.shields.io/npm/v/chanjet-gzq-h5.svg?style=flat-square)](https://www.npmjs.org/package/chanjet-gzq-h5)  [![downloads per month](http://img.shields.io/npm/dm/chanjet-gzq-h5.svg)](https://www.npmjs.org/package/chanjet-gzq-h5)
+
 ## 安装
 ```
     $ npm install chanjet-gzq-h5 -g
