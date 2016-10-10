@@ -3,3 +3,4 @@
 .npmignore
 .npm-debug.log
 /node_modules/
+app/templates/app/.git

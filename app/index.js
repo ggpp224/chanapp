@@ -22,6 +22,10 @@ class App extends Yao{
         super(baseRoot);
     }
 
+    /**
+     * 交互命令
+     * @returns {*}
+     */
     prompting() {
        var cli = this.cli = meow(`
             ${chalk.yellow.bold('help:')}
@@ -94,7 +98,7 @@ class App extends Yao{
             {
                 type: 'list',
                 name: 'cnpm',
-                message: '选取自动安装项目依赖?',
+                message: '是否安装项目依赖包?',
                 default: 'npm',
                 choices: [
                     {name: 'npm, 从npm官方安装', value: 'npm', short: '从npm.org安装'},
@@ -115,6 +119,9 @@ class App extends Yao{
 
     }
 
+    /**
+     * 写入磁盘
+     */
     writing(){
         if(this.create){
             this.createTplFile(this.fileName,this.cli.flags);
@@ -122,7 +129,9 @@ class App extends Yao{
             if(!this.dirname){
                 this.dirname = this.answers.dirname;
             }
+            // 初始化环境
             this.buildEnv();
+            // copy 目录
             this.assetsDirs();
 
         }
@@ -130,11 +139,33 @@ class App extends Yao{
 
     }
 
+    /**
+     * 安装
+     */
+    install(){
+        var answers = this.answers;
+        if(answers.cnpm !== 'none'){
+            console.log('install ...');
+            var answers = this.answers;
+            if(answers.cnpm !== 'none'){
+                this.spawnCommand(answers.cnpm,['install']);
+            }
+        }
+
+    }
+
+    /**
+     * 初始化环境
+     */
     buildEnv(){
         this.appName = this.dirname || this.answers.dirname;
+        // 设置目标根目录
         this.destinationRoot(this.appName);
     }
 
+    /**
+     * copy 目录
+     */
     assetsDirs(){
         this.fs.copy(
             this.templatePath('app'),
@@ -142,12 +173,17 @@ class App extends Yao{
         );
 
         this.fs.copy(
-            this.templatePath('app/.babelrc'),
+            this.templatePath('app/.babelrc'), // babelrc 需要作单独处理
             this.destinationPath('.babelrc')
         );
 
     }
 
+    /**
+     * create 命令
+     * @param fileName
+     * @param flags
+     */
     createTplFile(fileName, flags){
         // component (react)
         if(flags.c){
@@ -158,21 +194,6 @@ class App extends Yao{
         if(flags.p){
             this.fs.copyTpl(this.templatePath('tpl/Page.js'),path.join(process.cwd(),`${fileName}Page.js`),{className:`${fileName}Page`},{})
         }
-    }
-
-    install(){
-        var answers = this.answers;
-        if(answers.cnpm !== 'none'){
-            console.log('install ...');
-            // this.spawnCommand(answers.cnpm,['install']);
-            if(answers.cnpm === 'npm'){
-                this.spawnCommand(answers.cnpm,['install']);
-            }else{
-                process.chdir(this._destinationRoot);
-                child_process.execSync(sudo(answers.cnpm + ' install'), {stdio: 'inherit'});
-            }
-        }
-
     }
 
 }
